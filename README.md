@@ -105,6 +105,31 @@ The application uses the Mistral AI Chat Completions API:
 - Has access to all model outputs for comparison
 - Provides comparative scoring
 
+## Future Work
+
+### Judge System Enhancements
+- **Custom Judge Models**: Allow users to select which Mistral model to use as judge
+- **Custom Judging Criteria**: Enable users to define their own evaluation rules and scoring criteria
+- **Advanced System Prompts**: Improve judge prompts with more sophisticated evaluation frameworks
+- **Multi-dimensional Scoring**: Add separate scores for different aspects (accuracy, creativity, coherence, etc.)
+
+### User Experience Improvements
+- **Prompt Templates**: Pre-built prompts for common benchmarking scenarios
+- **Result Export**: Export benchmark results to CSV/JSON formats
+- **Result History**: Save and compare previous benchmark runs
+- **Response Analytics**: Show statistics like average scores, response time analysis
+
+### Technical Enhancements
+- **Streaming Responses**: Real-time response streaming for better UX
+- **Batch Processing**: Run multiple benchmark sets simultaneously
+- **Cost Tracking**: Display estimated API costs for benchmark runs
+
+### Advanced Features
+- **Custom Model Integration**: Support for fine-tuned or custom models
+- **A/B Testing Mode**: Compare two sets of models or prompts
+- **Collaborative Benchmarking**: Share benchmark configurations with team members
+- **Advanced Filtering**: Filter and sort results by various criteria
+
 ## Contributing
 
 This project was built as part of a Mistral AI Software Engineer Internship application. Feel free to suggest improvements or report issues.

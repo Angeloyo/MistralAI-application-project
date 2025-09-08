@@ -118,6 +118,7 @@ The application uses the Mistral AI Chat Completions API:
 - **Result Export**: Export benchmark results to CSV/JSON formats
 - **Result History**: Save and compare previous benchmark runs
 - **Response Analytics**: Show statistics like average scores, response time analysis
+- **Better Responsive Design**: Optimize layout and interactions for mobile and tablet devices
 
 ### Technical Enhancements
 - **Streaming Responses**: Real-time response streaming for better UX

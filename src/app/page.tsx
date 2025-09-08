@@ -6,10 +6,11 @@ import { toast } from "sonner";
 import { SettingsModal } from "@/components/settings-modal";
 import { ModelCards } from "@/components/model-cards";
 import { MistralModel } from "@/types/models";
-import { useApiKey } from "@/hooks/useApiKey";
 import { makeModelCall, judgeResponse, judgeResponseWithContext, ModelResponse } from "@/lib/mistral-api";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { InfoIcon } from "lucide-react";
+
+const API_KEY_STORAGE_KEY = "mistral-api-key";
 
 export default function Home() {
   const [selectedModels, setSelectedModels] = useState<MistralModel[]>([]);
@@ -18,7 +19,6 @@ export default function Home() {
   const [responses, setResponses] = useState<ModelResponse[]>([]);
   const [loadingModels, setLoadingModels] = useState<Set<string>>(new Set());
   const [expandedResponses, setExpandedResponses] = useState<Set<string>>(new Set());
-  const { apiKey, hasApiKey } = useApiKey();
 
   const toggleExpanded = (modelEndpoint: string) => {
     setExpandedResponses(prev => {
@@ -33,7 +33,8 @@ export default function Home() {
   };
 
   const handleRunBenchmark = async () => {
-    if (!hasApiKey) {
+    const apiKey = localStorage.getItem(API_KEY_STORAGE_KEY);
+    if (!apiKey) {
       toast.error("Please set your API key in settings first");
       return;
     }

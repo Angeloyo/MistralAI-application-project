@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Eye, EyeOff, Trash2, Settings } from "lucide-react";
 import { toast } from "sonner";
-import { useApiKey } from "@/hooks/useApiKey";
 import {
   Dialog,
   DialogContent,
@@ -14,24 +13,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+const API_KEY_STORAGE_KEY = "mistral-api-key";
+
 export function SettingsModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { apiKey, saveApiKey, clearApiKey, hasApiKey } = useApiKey();
 
   useEffect(() => {
     if (isOpen) {
-      setInputValue(apiKey);
+      const storedKey = localStorage.getItem(API_KEY_STORAGE_KEY) || "";
+      setInputValue(storedKey);
     }
-  }, [isOpen, apiKey]);
+  }, [isOpen]);
 
   const handleSave = () => {
-    const success = saveApiKey(inputValue);
-    if (success) {
-      toast.success("API key saved successfully!");
+    try {
+      if (inputValue.trim()) {
+        localStorage.setItem(API_KEY_STORAGE_KEY, inputValue.trim());
+        toast.success("API key saved successfully!");
+      } else {
+        localStorage.removeItem(API_KEY_STORAGE_KEY);
+      }
       setIsOpen(false);
-    } else {
+    } catch (error) {
       toast.error("Failed to save API key. Please try again.");
     }
   };
@@ -79,14 +84,12 @@ export function SettingsModal() {
                 variant="outline"
                 size="icon"
                 onClick={() => {
-                  if (inputValue.trim() || apiKey) {
+                  try {
+                    localStorage.removeItem(API_KEY_STORAGE_KEY);
                     setInputValue("");
-                    const success = clearApiKey();
-                    if (success) {
-                      toast.success("API key cleared");
-                    } else {
-                      toast.error("Failed to clear API key");
-                    }
+                    toast.success("API key cleared");
+                  } catch (error) {
+                    toast.error("Failed to clear API key");
                   }
                 }}
               >

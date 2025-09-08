@@ -8,6 +8,8 @@ import { ModelCards } from "@/components/model-cards";
 import { MistralModel } from "@/types/models";
 import { useApiKey } from "@/hooks/useApiKey";
 import { makeModelCall, judgeResponse, judgeResponseWithContext, ModelResponse } from "@/lib/mistral-api";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { InfoIcon } from "lucide-react";
 
 export default function Home() {
   const [selectedModels, setSelectedModels] = useState<MistralModel[]>([]);
@@ -225,10 +227,30 @@ export default function Home() {
                     Response
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Judge 1 (Unbiased)
+                    <div className="flex items-center gap-1">
+                      Judge 1 (Unbiased)
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <InfoIcon className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Judge 1 rates with only one model's response as context.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Judge 2 (Biased)
+                    <div className="flex items-center gap-1">
+                      Judge 2 (Biased)
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <InfoIcon className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Judge 2 rates with all models' responses as context.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
                   </th>
                 </tr>
               </thead>

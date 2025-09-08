@@ -234,7 +234,7 @@ export default function Home() {
                           <InfoIcon className="w-4 h-4 text-gray-400 hover:text-gray-600" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>Judge 1 rates with only one model's response as context.</p>
+                          <p>Judge 1 rates with only one model&apos;s response as context.</p>
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -247,7 +247,7 @@ export default function Home() {
                           <InfoIcon className="w-4 h-4 text-gray-400 hover:text-gray-600" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>Judge 2 rates with all models' responses as context.</p>
+                          <p>Judge 2 rates with all models&apos; responses as context.</p>
                         </TooltipContent>
                       </Tooltip>
                     </div>

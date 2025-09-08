@@ -17,7 +17,11 @@ A web application for benchmarking and comparing different Mistral AI models wit
 
 ## Demo
 
-https://github.com/angeloyo/MistralAI-application-project/demo.mp4
+
+
+https://github.com/user-attachments/assets/86db812b-1dde-46dd-88e8-e8a0a91b3612
+
+
 
 ## Setup
 

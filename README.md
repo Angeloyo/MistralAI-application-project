@@ -1,5 +1,8 @@
 # Mistral AI Models Benchmarking
 
+> **Software Engineer Internship Application Project for Mistral AI**  
+> Development time: ~2 hours
+
 A web application for benchmarking and comparing different Mistral AI models with automated judging system.
 
 ## Features

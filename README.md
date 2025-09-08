@@ -15,6 +15,10 @@ A web application for benchmarking and comparing different Mistral AI models wit
 - **Response Management**: View full responses with expand/collapse functionality
 - **Real-time Results**: Live updates as models respond and judges evaluate
 
+## Demo
+
+https://github.com/angeloyo/MistralAI-application-project/demo.mp4
+
 ## Setup
 
 ### Prerequisites

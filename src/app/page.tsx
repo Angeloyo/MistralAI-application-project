@@ -73,7 +73,7 @@ export default function Home() {
           setResponses(prev => [...prev, response]);
           
           // Call judge automatically
-          const judgeResult = await judgeResponse(response.response, apiKey);
+          const judgeResult = await judgeResponse(response.response, prompt.trim(), apiKey);
           
           // Update response with judge score
           setResponses(prev => prev.map(r => 
@@ -116,6 +116,7 @@ export default function Home() {
             response.response,
             response.model.name,
             completedResponses,
+            prompt.trim(),
             apiKey
           );
           

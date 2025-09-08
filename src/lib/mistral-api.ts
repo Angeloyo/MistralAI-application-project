@@ -108,6 +108,7 @@ export async function makeModelCall(
 
 export async function judgeResponse(
   response: string,
+  prompt: string,
   apiKey: string
 ): Promise<{ score: number; error?: string }> {
   try {
@@ -122,11 +123,11 @@ export async function judgeResponse(
         messages: [
           {
             role: 'system',
-            content: 'You are an expert judge for evaluating AI responses. Rate the response on a scale of 0-100 based on: accuracy, clarity, completeness, and helpfulness. Only return the numerical score, nothing else.',
+            content: 'You are an expert judge for evaluating AI responses. Rate the response on a scale of 0-100 based on: accuracy, clarity, completeness, and helpfulness in answering the given prompt. Only return the numerical score, nothing else.',
           },
           {
             role: 'user',
-            content: `Please rate this response (0-100):\n\n${response}`,
+            content: `Original prompt: "${prompt}"\n\nResponse to rate:\n${response}\n\nPlease rate how well this response answers the prompt (0-100):`,
           },
         ],
         max_tokens: 10,
@@ -167,6 +168,7 @@ export async function judgeResponseWithContext(
   targetResponse: string,
   targetModel: string,
   allResponses: ModelResponse[],
+  prompt: string,
   apiKey: string
 ): Promise<{ score: number; error?: string }> {
   try {
@@ -187,11 +189,11 @@ export async function judgeResponseWithContext(
         messages: [
           {
             role: 'system',
-            content: 'You are an expert judge comparing AI responses. Rate the TARGET response on a scale of 0-100 based on: accuracy, clarity, completeness, and helpfulness compared to the other responses. Only return the numerical score, nothing else.',
+            content: 'You are an expert judge comparing AI responses. Rate the TARGET response on a scale of 0-100 based on: accuracy, clarity, completeness, and helpfulness in answering the given prompt, compared to the other responses. Only return the numerical score, nothing else.',
           },
           {
             role: 'user',
-            content: `Here are all the responses to compare:\n\n${contextText}\n\nPlease rate the response from ${targetModel} (0-100):`,
+            content: `Original prompt: "${prompt}"\n\nHere are all the responses to compare:\n\n${contextText}\n\nPlease rate how well the response from ${targetModel} answers the prompt compared to others (0-100):`,
           },
         ],
         max_tokens: 10,
